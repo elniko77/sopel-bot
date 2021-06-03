@@ -1,0 +1,7 @@
+[core]
+nick = nssbotprueba
+host = irc.libera.chat
+use_ssl = false
+port = 6667
+owner = nss
+channels = #testnico

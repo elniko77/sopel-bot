@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  sopel:
+    image: adamus1red/sopel
+    container_name: sopel
+    volumes:
+      - ./sopel_config/default.cfg:/home/sopel/.sopel/default.cfg
+      - ./sopel_modules/:/home/sopel/.sopel/modules/
