@@ -1,3 +1,8 @@
+"""sopel-dolar
+
+Plugin para sopel para obtener cotización del dólar
+"""
+
 from sopel import module
 import requests
 import json

@@ -36,7 +36,7 @@ def clima(bot, trigger):
         '50n' : '🌫'
     }
 
-    apiurl = apiurl + '&q=' + city
+    apiurl = apiurl + '&q=' + city + ',ar' 
 
     try:
         r = requests.get(apiurl)
