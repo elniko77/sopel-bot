@@ -5,3 +5,8 @@ use_ssl = false
 port = 6667
 owner = nss
 channels = #testnico
+
+
+# plugin openweather
+[clima]
+api_key=blablabla
