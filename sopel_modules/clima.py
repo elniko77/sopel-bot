@@ -51,13 +51,3 @@ def clima(bot, trigger):
         #f"{data['name']}, {data['sys']['country']}: {data['main']['temp']} - {data['weather'][0]['icon']} - min: {data['main']['temp_min']}, max: {data['main']['temp_min']} - humedad: {data['main']['humidity']} ."
         clima = f"{data['name']}, {data['sys']['country']}: {data['main']['temp']}˚C - {iconos[data['weather'][0]['icon']]}  - min: {data['main']['temp_min']}˚C, max: {data['main']['temp_min']}˚C - humedad: {data['main']['humidity']}%."
         bot.say(clima)
-
-
-
-
-
-
-
-    #mensaje = "clina " + api_key
-    #bot.say(api_key)
-

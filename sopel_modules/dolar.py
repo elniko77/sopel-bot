@@ -9,7 +9,6 @@ import json
 
 @module.commands('dolar')
 def dolar(bot, trigger):
-#    bot.say('Hello, world! 4')
     data = requests.get('http://api.bluelytics.com.ar/v2/latest')
 
     if data.status_code == 200:
