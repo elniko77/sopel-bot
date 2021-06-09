@@ -1,3 +1,5 @@
+import time
+from datetime import date
 from sopel import module
 from sopel.config.types import StaticSection, ValidatedAttribute
 import requests
