@@ -6,18 +6,23 @@ Plugin para sopel para obtener cotización del dólar
 from sopel import module
 import requests
 import json
+import re
 
 @module.commands('dolar')
 def dolar(bot, trigger):
 
-    cuantos = trigger.group(2)
+    #bot.say(trigger)
+    #t = trigger.group(3)
+    #bot.say("3" + t)
+    
+    trigger = re.sub('(<.*?>) ?', '', trigger)
+    trigger = re.sub(r'\..\S*(\s)?', '', trigger)
 
-    if not cuantos:
+    if (not trigger):
         cuantos = float(1)
     else:
-        cuantos = float(cuantos)
-          
-
+        cuantos = float(trigger)
+    
     api_url = 'https://www.dolarsi.com/api/api.php?type=valoresprincipales'
     tipodolar = ["Dolar Oficial", "Dolar Blue", "Dolar Bolsa", "Dolar Contado con Liqui"]
     

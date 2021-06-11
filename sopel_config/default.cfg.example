@@ -5,6 +5,8 @@ use_ssl = false
 port = 6667
 owner = nss
 channels = #testnico
+# Prefijo para matchear a los que vienen de discord o slack
+prefix = (\<.*?\>)?(\s)?\.
 
 
 # plugin openweather
