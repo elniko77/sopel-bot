@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  ircd2:
+    image: elniko77/ircd2imagen:arm64
+    volumes:
+      - "./sopel_config/unrealircd:/ircd"
+    container_name: ircd2
+    ports:
+      - "6667:6667"
+      - "6697:6697"
+
+  sopel2:
+    image: adamus1red/sopel
+    container_name: sopel2
+    volumes:
+      - ./sopel_config/default.cfg:/home/sopel/.sopel/default.cfg
+      - ./sopel_modules/:/home/sopel/.sopel/modules/
+    depends_on:
+      - ircd2
+
+  weechat2:
+    image: heywoodlh/weechat
+    container_name: weechat2
+    stdin_open: true
+    tty: true
+    environment:
+      - 'UID=1000'
+      - 'GID=1000'
+    volumes:
+      - ./sopel_config/weechat_irc.conf:/weechat/.weechat/irc.conf
+    depends_on:
+      - ircd2
