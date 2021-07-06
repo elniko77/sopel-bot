@@ -21,7 +21,8 @@ def dolar(bot, trigger):
     if (not trigger):
         cuantos = float(1)
     else:
-        cuantos = float(trigger)
+        cantidad = trigger.replace(',', '.')
+        cuantos = float(cantidad)
     
     api_url = 'https://www.dolarsi.com/api/api.php?type=valoresprincipales'
     tipodolar = ["Dolar Oficial", "Dolar Blue", "Dolar Bolsa", "Dolar Contado con Liqui"]
