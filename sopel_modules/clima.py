@@ -1,16 +1,20 @@
 from sopel import module
 from sopel.config.types import StaticSection, ValidatedAttribute
 import requests
+import re
 
 @module.commands('clima')
 def clima(bot, trigger):
     city = trigger.group(2)
 
-    if not city:
+    trigger = re.sub('(<.*?>) ?', '', trigger)
+    trigger = re.sub(r'\..\S*(\s)?', '', trigger)
+
+    if (not trigger):
         bot.say('Uso: clima <ciudad>')
         return
-
-#    bot.say(city)
+    else:
+        city = trigger
 
     api_key = bot.config.clima.api_key
     apiurl = 'http://api.openweathermap.org/data/2.5/weather?units=metric&appid=' + api_key
@@ -36,18 +40,29 @@ def clima(bot, trigger):
         '50n' : '🌫'
     }
 
-    apiurl = apiurl + '&q=' + city + ',ar' 
+    #apiurl = apiurl + '&q=' + city + ',ar' 
+    apiurlarg = apiurl + '&q=' + city + ',ar'
+    apiurl = apiurl + '&q=' + city
 
+    # Primero se intenta con país Argentina, si no lo encuentra se prueba
     try:
-        r = requests.get(apiurl)
+        r = requests.get(apiurlarg)
     except:
         raise Exception("Error obteniendo clima... ‾_(ツ)_/‾")
 
-    
     data = r.json()
     if r.status_code != 200:
-        raise Exception('Error: {}'.format(data['message']))
+        #Ahora se prueba sin el codigo de país
+        try:
+            r = requests.get(apiurl)
+        except:
+            raise Exception("Error obteniendo clima... ‾_(ツ)_/‾")
+        data = r.json()
+        if r.status_code != 200:
+            raise Exception('Error: {}'.format(data['message']))
+        else:
+            clima = f"{data['name']}, {data['sys']['country']}: {data['main']['temp']}˚C - {iconos[data['weather'][0]['icon']]}  - min: {data['main']['temp_min']}˚C, max: {data['main']['temp_min']}˚C - humedad: {data['main']['humidity']}%."
+            bot.say(clima)
     else:
-        #f"{data['name']}, {data['sys']['country']}: {data['main']['temp']} - {data['weather'][0]['icon']} - min: {data['main']['temp_min']}, max: {data['main']['temp_min']} - humedad: {data['main']['humidity']} ."
         clima = f"{data['name']}, {data['sys']['country']}: {data['main']['temp']}˚C - {iconos[data['weather'][0]['icon']]}  - min: {data['main']['temp_min']}˚C, max: {data['main']['temp_min']}˚C - humedad: {data['main']['humidity']}%."
         bot.say(clima)
