@@ -2,7 +2,7 @@ version: '3'
 
 services:
   ircd2:
-    image: elniko77/ircd2imagen:arm64
+    image: elniko77/ircd
     volumes:
       - "./sopel_config/unrealircd:/ircd"
     container_name: ircd2
@@ -24,6 +24,8 @@ services:
     container_name: weechat2
     stdin_open: true
     tty: true
+    ports:
+      - "9001:9001" 
     environment:
       - 'UID=1000'
       - 'GID=1000'
