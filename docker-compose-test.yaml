@@ -14,7 +14,7 @@ services:
     image: adamus1red/sopel
     container_name: sopel2
     volumes:
-      - ./sopel_config/default.cfg:/home/sopel/.sopel/default.cfg
+      - ./sopel_config/default.test.cfg:/home/sopel/.sopel/default.cfg
       - ./sopel_modules/:/home/sopel/.sopel/modules/
     depends_on:
       - ircd2
