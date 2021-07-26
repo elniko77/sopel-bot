@@ -32,7 +32,8 @@ def feriado(bot, trigger):
                     bot.say("Hoy es feriado!!")
                     return
                 else: 
-                    if int(feriado) > day:
+#                    if int(feriado) > day:
+                    if int(feriado) > day or ( i > month -1) :
                         fecha_hoy = date(int(year), int(month), int(day))
                         fecha_feriado = date(int(year), i+1, int(feriado))
                         dias = fecha_feriado - fecha_hoy
