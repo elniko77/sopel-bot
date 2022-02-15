@@ -61,8 +61,8 @@ def clima(bot, trigger):
         if r.status_code != 200:
             raise Exception('Error: {}'.format(data['message']))
         else:
-            clima = f"{data['name']}, {data['sys']['country']}: {data['main']['temp']}˚C - {iconos[data['weather'][0]['icon']]}  - min: {data['main']['temp_min']}˚C, max: {data['main']['temp_min']}˚C - humedad: {data['main']['humidity']}%."
+            clima = f"{data['name']}, {data['sys']['country']}: {data['main']['temp']}˚C - {iconos[data['weather'][0]['icon']]}  - min: {data['main']['temp_min']}˚C, max: {data['main']['temp_min']}˚C - humedad: {data['main']['humidity']}% - ST: {data['main']['feels_like']}˚C - Presión: {data['main']['pressure']}hPa."
             bot.say(clima)
     else:
-        clima = f"{data['name']}, {data['sys']['country']}: {data['main']['temp']}˚C - {iconos[data['weather'][0]['icon']]}  - min: {data['main']['temp_min']}˚C, max: {data['main']['temp_min']}˚C - humedad: {data['main']['humidity']}%."
+        clima = f"{data['name']}, {data['sys']['country']}: {data['main']['temp']}˚C - {iconos[data['weather'][0]['icon']]}  - min: {data['main']['temp_min']}˚C, max: {data['main']['temp_min']}˚C - humedad: {data['main']['humidity']}%. - ST: {data['main']['feels_like']}˚C - Presión: {data['main']['pressure']}hPa."
         bot.say(clima)
