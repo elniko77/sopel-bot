@@ -4,7 +4,10 @@ host = irc.libera.chat
 use_ssl = false
 port = 6667
 owner = nss
-channels = #testnico
+channels = 
+     "#testnico"
+	 "#sysarmy"
+
 # Prefijo para matchear a los que vienen de discord o slack
 prefix = (\<.*?\>)?(\s)?\.
 
