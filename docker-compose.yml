@@ -2,7 +2,7 @@ version: '3'
 
 services:
   sopel:
-    image: adamus1red/sopel
+    image: adamus1red/sopel:7.1.2
     container_name: sopel
     restart: always
     volumes:
